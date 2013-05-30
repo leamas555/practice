@@ -1,4 +1,4 @@
 practice
 ========
 
-An area for learning
+An area for learning.
