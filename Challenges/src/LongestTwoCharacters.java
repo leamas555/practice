@@ -14,20 +14,27 @@ public class LongestTwoCharacters {
 	public static String subString(String str) {
 		String firstChar = str.substring(0,1);
 		String secondChar = str.substring(1,2);
-		String longestString = firstChar + secondChar;
+		String longestCurrent = firstChar + secondChar;
+		String longestArchive = "";
 		
 		for(int i=2; i<str.length(); i++) {
 			String substring = str.substring(i,i+1);
 			
-			if (firstChar.equals(substring) || secondChar.equals(substring)) {
-				longestString += substring;
+			if (longestCurrent.contains(substring)) {
+				longestCurrent = longestCurrent + substring;
+			} else {
+				if (longestCurrent.length() >= longestArchive.length())
+				  longestArchive = longestCurrent;
+				longestCurrent = longestCurrent.substring(longestCurrent.length() - 1 ) + substring;
 			}
 			
 		}
 		
 		
-		
-		return longestString;
+		if (longestCurrent.length() >= longestArchive.length())
+			return longestCurrent;
+		else
+			return longestArchive;
 	}
 	
 	
@@ -37,10 +44,13 @@ public class LongestTwoCharacters {
 	public static void main(String[] args) {
 
 		String str  = "abbccc";   // bbccc
-		String str2 = "abcabcabcabccc"; // bccc
+		String str2 = "abcaaabcabcabccc"; // bccc
 		String str3 = "qwertyytrewq"; // tyyt
 		
-		System.out.println(subString(str));
+		
+		
+		
+		System.out.println(subString(str2));
 		
 	}
 
